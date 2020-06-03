@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Compress file
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3>File information:</h3>
+            <div class="alert alert-info">
+                <p><b>Name of file:</b> {{ file.f_name }}</p>
+                <p><b>Size of file in Kbs:</b> {{ file.f_size }}</p>
+                <form method="post" class="form-inline mt-2 mt-md-0" enctype="multipart/form-data">
+                    <nav class="my-4 my-md-0 mr-md-3">
+                        <input class="form-control mr-sm-2" id="size" name="size" placeholder="Compression in Kbs" aria-label="Search">
+                        <input type="submit" name="submit" id="submit" class="btn btn-outline-success my-2 my-sm-0" value="Compress file">
+                        <a class="btn btn-success" href="/jpg_files/{{ file.f_id }}/download_compressed_jpg_file">Download compressed file</a>
+                    </nav>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

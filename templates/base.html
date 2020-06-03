@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="container d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <h4 class="my-0 mr-md-auto font-weight-normal"><b>File compression</b></h4>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="btn btn-success" href="/jpg_files">List of files</a>
+            <a class="btn btn-warning" href="/add_jpg_file">Add new file</a>
+        </nav>
+    </div>
+    {% block body %}{% endblock %}
+    <footer class="container pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+      <div class="col-12 col-md">
+        <img class="mb-2" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
+        <small class="d-block mb-3 text-muted">© 2020 - Oleksandr Krysko</small>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Upload image
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <form method=POST enctype=multipart/form-data action="{{ url_for('add_jpg_file') }}">
+                <label>Select file for compression </label>
+                <input type=file name=photo accept=".jpg">
+                <label>Submit this file </label>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button><br><br>
+            </form>
+        </div>
+        <div class="col-xl">
+            <b>File name:</b>{{ context[0] }}<br>
+            <b>File size in Kbs:</b> {{ context[1] }}
+        </div>
+    </div>
+</div>
+{% endblock %}

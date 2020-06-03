@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+List of JPG files
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3>The list of uploaded JPG files</h3>
+
+            {% if files|length > 0 %}
+                {% for f in files %}
+                <div class="alert alert-info">
+                    <p><b>Name of file:</b> {{ f.f_name }}</p>
+                    <p><b>Size of file in Kbs:</b> {{ f.f_size }}</p>
+                    <p><b>Date of adding:</b> {{ f.f_date.date() }}</p>
+                    <a class="btn btn-warning" href="/jpg_files/{{ f.f_id }}/compress_jpg_file">Compress file</a>
+                    <a class="btn btn-danger" href="/jpg_files/{{ f.f_id }}/del_jpg_file">Delete file</a>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>There are no uploaded JPG files yet</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
