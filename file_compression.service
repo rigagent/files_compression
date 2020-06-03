@@ -1,6 +1,6 @@
 [Unit]
 
 [Service]
-ExecStart=/root/files_compression/app.py
+ExecStart=/usr/bin/python3 /root/files_compression/app.py
 
 [Install]
