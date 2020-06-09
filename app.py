@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import envoy
+import subprocess
 import os.path
 from datetime import datetime
 from flask import Flask, render_template, request, url_for, send_file, redirect
@@ -63,9 +63,9 @@ def del_jpg_file(f_id):
     file = NewFile.query.get_or_404(f_id)
     try:
         if os.path.exists("{}{}".format(ORIGINAL_FILES_PATH, file.f_name)):
-            envoy.run("rm -r {}{}".format(ORIGINAL_FILES_PATH, file.f_name))
+            subprocess.check_output(["rm", "-r", "{}{}".format(ORIGINAL_FILES_PATH, file.f_name)])
         if os.path.exists("{}{}".format(COMPRESSED_FILES_PATH, file.f_name)):
-            envoy.run("rm -r {}{}".format(COMPRESSED_FILES_PATH, file.f_name))
+            subprocess.check_output(["rm", "-r", "{}{}".format(COMPRESSED_FILES_PATH, file.f_name)])
         db.session.delete(file)
         db.session.commit()
         return redirect('/jpg_files')
@@ -78,8 +78,9 @@ def compress_jpg_file(f_id):
     file = NewFile.query.get(f_id)
     if request.method == 'POST':
         new_f_size = request.form['size']
-        envoy.run("jpegoptim --size={} {}{} -d {}".format(new_f_size, ORIGINAL_FILES_PATH,
-                                                          file.f_name, COMPRESSED_FILES_PATH))
+        subprocess.check_output(["jpegoptim", "--size={}".format(new_f_size),
+                                 "{}{}".format(ORIGINAL_FILES_PATH, file.f_name),
+                                 "-d {}".format(COMPRESSED_FILES_PATH)])
     return render_template('compress_jpg_file.html', file=file)
 
 
